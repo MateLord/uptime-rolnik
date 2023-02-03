@@ -25,13 +25,13 @@ class RocketChat extends NotificationProvider {
             const time = heartbeatJSON["time"];
 
             let data = {
-                "text": "Uptime Kuma Alert",
+                "text": "CAmonitor Alert",
                 "channel": notification.rocketchannel,
                 "username": notification.rocketusername,
                 "icon_emoji": notification.rocketiconemo,
                 "attachments": [
                     {
-                        "title": "Uptime Kuma Alert *Time (UTC)*\n" + time,
+                        "title": "CAmonitor Alert *Time (UTC)*\n" + time,
                         "text": "*Message*\n" + msg,
                     }
                 ]

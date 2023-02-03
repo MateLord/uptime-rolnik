@@ -1,9 +1,9 @@
 /*
- * Uptime Kuma Server
+ * CAmonitor Server
  * node "server/server.js"
  * DO NOT require("./server") in other modules, it likely creates circular dependency!
  */
-console.log("Welcome to Uptime Kuma");
+console.log("Welcome to CAmonitor");
 
 // As the log function need to use dayjs, it should be very top
 const dayjs = require("dayjs");
@@ -28,7 +28,7 @@ const args = require("args-parser")(process.argv);
 const { sleep, log, getRandomInt, genSecret, isDev } = require("../src/util");
 const config = require("./config");
 
-log.info("server", "Welcome to Uptime Kuma");
+log.info("server", "Welcome to CAmonitor");
 log.debug("server", "Arguments");
 log.debug("server", args);
 
@@ -596,7 +596,7 @@ let needSetup = false;
                 }
 
                 if ((await R.count("user")) !== 0) {
-                    throw new Error("Uptime Kuma has been initialized. If you want to run setup again, please delete the database.");
+                    throw new Error("CAmonitor has been initialized. If you want to run setup again, please delete the database.");
                 }
 
                 let user = R.dispense("user");
@@ -1667,7 +1667,7 @@ async function initDatabase(testMode = false) {
         log.info("server", "Load JWT secret from database.");
     }
 
-    // If there is no record in user table, it is a new Uptime Kuma instance, need to setup
+    // If there is no record in user table, it is a new CAmonitor instance, need to setup
     if ((await R.count("user")) === 0) {
         log.info("server", "No user, need setup");
         needSetup = true;
