@@ -7,4 +7,10 @@ ALTER TABLE monitor
 ALTER TABLE monitor
     ADD basic_auth_pass TEXT default null;
 
+ALTER TABLE monitor
+    ADD mycalogin TEXT default null;
+
+ALTER TABLE monitor
+    ADD mycapassword TEXT default null;
+
 COMMIT;

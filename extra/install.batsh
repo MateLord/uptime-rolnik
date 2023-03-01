@@ -5,7 +5,7 @@
 
 // curl -o kuma_install.sh https://raw.githubusercontent.com/louislam/uptime-kuma/master/install.sh && sudo bash kuma_install.sh
 println("=====================");
-println("Uptime Kuma Installer");
+println("CAmonitor Installer");
 println("=====================");
 println("Supported OS: CentOS 7/8, Ubuntu >= 16.04 and Debian");
 println("---------------------------------------");
@@ -13,8 +13,8 @@ println("This script is designed for Linux and basic usage.");
 println("For advanced usage, please go to https://github.com/louislam/uptime-kuma/wiki/Installation");
 println("---------------------------------------");
 println("");
-println("Local - Install Uptime Kuma in your current machine with git, Node.js 14 and pm2");
-println("Docker - Install Uptime Kuma Docker container");
+println("Local - Install CAmonitor in your current machine with git, Node.js 14 and pm2");
+println("Docker - Install CAmonitor Docker container");
 println("");
 
 if ("$1" != "") {

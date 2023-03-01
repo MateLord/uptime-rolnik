@@ -3,7 +3,7 @@
 # The command is working on Windows PowerShell and Docker for Windows only.
 # curl -o kuma_install.sh https://raw.githubusercontent.com/louislam/uptime-kuma/master/install.sh && sudo bash kuma_install.sh
 "echo" "-e" "====================="
-"echo" "-e" "Uptime Kuma Installer"
+"echo" "-e" "CAmonitor Installer"
 "echo" "-e" "====================="
 "echo" "-e" "Supported OS: CentOS 7/8, Ubuntu >= 16.04 and Debian"
 "echo" "-e" "---------------------------------------"
@@ -11,8 +11,8 @@
 "echo" "-e" "For advanced usage, please go to https://github.com/louislam/uptime-kuma/wiki/Installation"
 "echo" "-e" "---------------------------------------"
 "echo" "-e" ""
-"echo" "-e" "Local - Install Uptime Kuma in your current machine with git, Node.js 14 and pm2"
-"echo" "-e" "Docker - Install Uptime Kuma Docker container"
+"echo" "-e" "Local - Install CAmonitor in your current machine with git, Node.js 14 and pm2"
+"echo" "-e" "Docker - Install CAmonitor Docker container"
 "echo" "-e" ""
 if [ "$1" != "" ]; then
   type="$1"

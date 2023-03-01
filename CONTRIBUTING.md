@@ -28,7 +28,7 @@ The frontend code build into "dist" directory. The server (express.js) exposes t
 - src (Frontend source code)
 - test (unit test)
 
-## Can I create a pull request for Uptime Kuma?
+## Can I create a pull request for CAmonitor?
 
 Yes or no, it depends on what you will try to do. Since I don't want to waste your time, be sure to **create an empty draft pull request or open an issue, so we can have a discussion first**. Especially for a large pull request or you don't know it will be merged or not.
 
@@ -51,7 +51,7 @@ Here are some references:
 - Any breaking changes
 - Duplicated pull request
 - Buggy
-- UI/UX is not close to Uptime Kuma 
+- UI/UX is not close to CAmonitor 
 - Existing logic is completely modified or deleted for no reason
 - A function that is completely out of scope
 - Convert existing code into other programming languages
@@ -177,7 +177,7 @@ npm run build
 
 ### Frontend Details
 
-Uptime Kuma Frontend is a single page application (SPA). Most paths are handled by Vue Router.
+CAmonitor Frontend is a single page application (SPA). Most paths are handled by Vue Router.
 
 The router is in `src/router.js`
 

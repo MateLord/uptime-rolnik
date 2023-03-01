@@ -100,6 +100,8 @@ class Monitor extends BeanModel {
             tags: tags,
             maintenance: await Monitor.isUnderMaintenance(this.id),
             mqttTopic: this.mqttTopic,
+            mycalogin: this.mycalogin,
+            mycapassword: this.mycapassword,
             mqttSuccessMessage: this.mqttSuccessMessage,
             databaseQuery: this.databaseQuery,
             authMethod: this.authMethod,
@@ -557,6 +559,12 @@ class Monitor extends BeanModel {
                     bean.msg = "";
                     bean.status = UP;
                     bean.ping = dayjs().valueOf() - startTime;
+                } else if (this.type === "MYCA_FRAME") {
+                    /* tu cos dopisac */
+                    await mycaLoginChain(this.mycalogin, this.mycapassword);
+                    bean.msg = "";
+                    bean.status = UP;
+
                 } else if (this.type === "grpc-keyword") {
                     let startTime = dayjs().valueOf();
                     const options = {

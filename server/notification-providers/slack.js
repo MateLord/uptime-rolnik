@@ -40,7 +40,7 @@ class Slack extends NotificationProvider {
             }
 
             const time = heartbeatJSON["time"];
-            const textMsg = "Uptime Kuma Alert";
+            const textMsg = "CAmonitor Alert";
             let data = {
                 "text": monitorJSON ? textMsg + `: ${monitorJSON.name}` : textMsg,
                 "channel": notification.slackchannel,
@@ -54,7 +54,7 @@ class Slack extends NotificationProvider {
                                 "type": "header",
                                 "text": {
                                     "type": "plain_text",
-                                    "text": "Uptime Kuma Alert",
+                                    "text": "CAmonitor Alert",
                                 },
                             },
                             {
@@ -88,7 +88,7 @@ class Slack extends NotificationProvider {
                             "type": "button",
                             "text": {
                                 "type": "plain_text",
-                                "text": "Visit Uptime Kuma",
+                                "text": "Visit CAmonitor",
                             },
                             "value": "Uptime-Kuma",
                             "url": baseURL + getMonitorRelativeURL(monitorJSON.id),
