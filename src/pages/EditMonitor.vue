@@ -42,6 +42,9 @@
                                     </optgroup>
 
                                     <optgroup :label="$t('Specific Monitor Type')">
+                                        <option value="MYCA_FRAME">
+                                            Moja Sprzedaz Login
+                                        </option>
                                         <option value="steam">
                                             {{ $t("Steam Game Server") }}
                                         </option>
@@ -93,6 +96,16 @@
                             <div v-if="monitor.type === 'http' || monitor.type === 'keyword' || monitor.type === 'browser' " class="my-3">
                                 <label for="url" class="form-label">{{ $t("URL") }}</label>
                                 <input id="url" v-model="monitor.url" type="url" class="form-control" pattern="https?://.+" required>
+                            </div>
+
+                            <!-- Only MYCA - Login / Password -->
+                            <div v-if="monitor.type === 'MYCA_FRAME'" class="my-3">
+                                <label for="mycalogin" class="form-label">{{ $t("mycalogin") }}</label>
+                                <input id="mycalogin" v-model="monitor.mycalogin" type="mycalogin" class="form-control" required>
+                            </div>
+                            <div v-if="monitor.type === 'MYCA_FRAME'" class="my-3">
+                                <label for="mycapassword" class="form-label">{{ $t("mycapassword") }}</label>
+                                <input id="mycapassword" v-model="monitor.mycapassword" type="mycapassword" class="form-control" required>
                             </div>
 
                             <!-- gRPC URL -->
@@ -867,6 +880,8 @@ message HealthCheckResponse {
                     docker_container: "",
                     docker_host: null,
                     proxyId: null,
+                    mycalogin: "",
+                    mycapassword: "",
                     mqttUsername: "",
                     mqttPassword: "",
                     mqttTopic: "",

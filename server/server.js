@@ -29,13 +29,14 @@ const { sleep, log, getRandomInt, genSecret, isDev } = require("../src/util");
 const config = require("./config");
 
 log.info("server", "Welcome to CAmonitor");
-log.debug("server", "Arguments");
-log.debug("server", args);
+log.info("server", "Arguments");
+log.info("server", args);
 
 if (! process.env.NODE_ENV) {
     process.env.NODE_ENV = "production";
 }
 
+log.info("server", "LDAP enbaled: " + process.env.LDAP_URL)
 log.info("server", "Node Env: " + process.env.NODE_ENV);
 
 log.info("server", "Importing Node libraries");
@@ -88,7 +89,7 @@ const { initBackgroundJobs, stopBackgroundJobs } = require("./jobs");
 const { loginRateLimiter, twoFaRateLimiter } = require("./rate-limiter");
 
 const { basicAuth } = require("./auth");
-const { login } = require("./auth");
+const { login, ldaplogin } = require("./auth");
 const passwordHash = require("./password-hash");
 
 const checkVersion = require("./check-version");
@@ -99,6 +100,9 @@ log.info("server", "Version: " + checkVersion.version);
 // Also read HOST if not FreeBSD, as HOST is a system environment variable in FreeBSD
 let hostEnv = FBSD ? null : process.env.HOST;
 let hostname = args.host || process.env.UPTIME_KUMA_HOST || hostEnv;
+const ldap_url = process.env.LDAP_URL;
+const ldap_chain = process.env.LDAP_CHAIN;
+
 
 if (hostname) {
     log.info("server", "Custom hostname: " + hostname);
@@ -339,7 +343,6 @@ let needSetup = false;
             }
 
             let user = await login(data.username, data.password);
-
             if (user) {
                 if (user.twofa_status === 0) {
                     afterLogin(socket, user);
@@ -393,16 +396,32 @@ let needSetup = false;
                     }
                 }
             } else {
-
                 log.warn("auth", `Incorrect username or password for user ${data.username}. IP=${clientIP}`);
+                log.warn("auth", 'ldapURL: ' + ldap_url);
+                if(ldap_url) {
+                    let user = await ldaplogin(data.username, data.password, ldap_url, ldap_chain);
+                    if (user !=null && user.twofa_status === 0) {
+                        afterLogin(socket, user);
 
+                        log.info("auth", `Successfully logged in LDAP user ${data.username}. IP=${clientIP}`);
+
+                        callback({
+                            ok: true,
+                            token: jwt.sign({
+                                username: data.username,
+                            }, jwtSecret),
+                        });
+                    }
+                
+            }
                 callback({
                     ok: false,
                     msg: "Incorrect username or password.",
                 });
             }
+        }
 
-        });
+        );
 
         socket.on("logout", async (callback) => {
             // Rate Limit
@@ -711,6 +730,8 @@ let needSetup = false;
                 bean.mqttUsername = monitor.mqttUsername;
                 bean.mqttPassword = monitor.mqttPassword;
                 bean.mqttTopic = monitor.mqttTopic;
+                bean.mycalogin = monitor.mycalogin;
+                bean.mycapassword = monitor.mycapassword;
                 bean.mqttSuccessMessage = monitor.mqttSuccessMessage;
                 bean.databaseConnectionString = monitor.databaseConnectionString;
                 bean.databaseQuery = monitor.databaseQuery;

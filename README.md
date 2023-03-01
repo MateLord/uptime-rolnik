@@ -1,17 +1,22 @@
 # CAmonitor
+Skrocona instrukcja obslugi:
+npm install
+npm run build
+docker build --target release -t matelord/camonitor:latest -f docker/dockerfile .       
+docker run -d --restart=always -e LDAP_URL=ldap://localhost:1389 -p 1389:1389 -p 3001:3001 -v uptime-kuma:/app/data --name uptime-kuma matelord/camonitor:test
+
+# CAmonitor
 
 <a target="_blank" href="https://github.com/louislam/uptime-kuma"><img src="https://img.shields.io/github/stars/louislam/uptime-kuma" /></a> <a target="_blank" href="https://hub.docker.com/r/louislam/uptime-kuma"><img src="https://img.shields.io/docker/pulls/louislam/uptime-kuma" /></a> <a target="_blank" href="https://hub.docker.com/r/louislam/uptime-kuma"><img src="https://img.shields.io/docker/v/louislam/uptime-kuma/latest?label=docker%20image%20ver." /></a> <a target="_blank" href="https://github.com/louislam/uptime-kuma"><img src="https://img.shields.io/github/last-commit/louislam/uptime-kuma" /></a>  <a target="_blank" href="https://opencollective.com/uptime-kuma"><img src="https://opencollective.com/uptime-kuma/total/badge.svg?label=Open%20Collective%20Backers&color=brightgreen" /></a>
-[![GitHub Sponsors](https://img.shields.io/github/sponsors/louislam?label=GitHub%20Sponsors)](https://github.com/sponsors/louislam) <a href="https://weblate.kuma.pet/engage/uptime-kuma/">
-<img src="https://weblate.kuma.pet/widgets/uptime-kuma/-/svg-badge.svg" alt="Translation status" />
-</a>
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/louislam?label=GitHub%20Sponsors)](https://github.com/sponsors/louislam)
 
 <div align="center" width="100%">
     <img src="./public/icon.svg" width="128" alt="" />
 </div>
 
-Uptime Kuma is an easy-to-use self-hosted monitoring tool.
+It is a self-hosted monitoring tool like "Uptime Robot".
 
-<img src="https://user-images.githubusercontent.com/1336778/212262296-e6205815-ad62-488c-83ec-a5b0d0689f7c.jpg" width="700" alt="" />
+<img src="https://uptime.kuma.pet/img/dark.jpg" width="700" alt="" />
 
 ## 🥔 Live Demo
 
@@ -28,7 +33,7 @@ It is a temporary live demo, all data will be deleted after 10 minutes. Use the 
 * Fancy, Reactive, Fast UI/UX
 * Notifications via Telegram, Discord, Gotify, Slack, Pushover, Email (SMTP), and [90+ notification services, click here for the full list](https://github.com/louislam/uptime-kuma/tree/master/src/components/notifications)
 * 20 second intervals
-* [Multi Languages](https://github.com/louislam/uptime-kuma/tree/master/src/lang)
+* [Multi Languages](https://github.com/louislam/uptime-kuma/tree/master/src/languages)
 * Multiple status pages
 * Map status pages to specific domains
 * Ping chart
@@ -173,11 +178,7 @@ Check out the latest beta release here: https://github.com/louislam/uptime-kuma/
 If you want to report a bug or request a new feature, feel free to open a [new issue](https://github.com/louislam/uptime-kuma/issues).
 
 ### Translations
-<<<<<<< HEAD
-If you want to translate Uptime Kuma into your language, please visit [Weblate Readme](https://github.com/louislam/uptime-kuma/blob/master/src/lang/README.md).
-=======
 If you want to translate CAmonitor into your language, please read: https://github.com/louislam/uptime-kuma/tree/master/src/languages
->>>>>>> c5c86279 (modified branding)
 
 Feel free to correct my grammar in this README, source code, or wiki, as my mother language is not English and my grammar is not that great.
 
